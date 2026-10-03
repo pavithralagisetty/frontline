@@ -4,8 +4,9 @@ and announces each newly assigned or escalated incident to the team's Telegram g
 Run next to the backend:  .venv/bin/python -m backend.alerts
 
 ALERT_VIA=openclaw (default): hand the incident to the OpenClaw agent through its webhook
-  (POST /hooks/agent); OpenClaw writes the alert and posts it to the group, so follow-up
-  questions in the group are answered by the same agent.
+  (POST /hooks/agent); OpenClaw writes the alert and posts it to every target in
+  ALERT_TARGETS (for example "telegram:-5188313482,slack:channel:C0123"), so follow-up
+  questions there are answered by the same agent. One agent run per target.
 ALERT_VIA=direct: post a fixed-format message with the Telegram Bot API (fallback). Only
   sendMessage is used; never call getUpdates with this bot token, OpenClaw is already
   long-polling the same bot and the two would conflict.
@@ -38,6 +39,12 @@ BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 HOOK_URL = os.environ.get("OPENCLAW_HOOK_URL", "")
 HOOK_TOKEN = os.environ.get("OPENCLAW_HOOK_TOKEN", "")
 BACKEND = f"http://{os.environ.get('HOST', '127.0.0.1')}:{os.environ.get('PORT', '8000')}"
+# "channel:to" pairs; defaults to the Telegram group alone.
+TARGETS = [
+    tuple(t.strip().split(":", 1))
+    for t in (os.environ.get("ALERT_TARGETS") or (f"telegram:{CHAT_ID}" if CHAT_ID else "")).split(",")
+    if ":" in t
+]
 
 RANK = {"Low": 0, "Medium": 1, "High": 2, "Critical": 3}
 ICON = {"Critical": "🔴", "High": "🟠", "Medium": "🟡", "Low": "⚪"}
@@ -63,9 +70,10 @@ def _escalates_in(inc: dict[str, Any]) -> str:
 
 # ---------- OpenClaw: the agent writes and posts the alert (see openclaw/AGENTS.md) ----------
 
-def hook_message(inc: dict[str, Any], kind: str) -> str:
+def hook_message(inc: dict[str, Any], kind: str, channel: str) -> str:
     lines = [
         "INCIDENT ALERT",
+        f"post_to: {channel}",
         f"id: {inc['id']}",
         f"severity: {inc['severity']}",
         f"service: {inc['service']}",
@@ -85,23 +93,26 @@ def hook_message(inc: dict[str, Any], kind: str) -> str:
 
 
 async def send_openclaw(client: httpx.AsyncClient, inc: dict[str, Any], kind: str) -> bool:
-    res = await client.post(
-        HOOK_URL,
-        headers={"Authorization": f"Bearer {HOOK_TOKEN}"},
-        json={
-            "message": hook_message(inc, kind),
-            "name": "Frontline dashboard",
-            "agentId": "main",
-            "deliver": True,
-            "channel": "telegram",
-            "to": CHAT_ID,
-            "timeoutSeconds": 120,
-        },
-    )
-    if res.status_code != 200:
-        log.warning("OpenClaw hook failed: HTTP %s %s", res.status_code, res.text[:200])
-        return False
-    return True  # 200 means accepted; OpenClaw runs the agent and posts afterwards
+    ok = False
+    for channel, to in TARGETS:
+        res = await client.post(
+            HOOK_URL,
+            headers={"Authorization": f"Bearer {HOOK_TOKEN}"},
+            json={
+                "message": hook_message(inc, kind, channel),
+                "name": "Frontline dashboard",
+                "agentId": "main",
+                "deliver": True,
+                "channel": channel,
+                "to": to,
+                "timeoutSeconds": 120,
+            },
+        )
+        if res.status_code != 200:
+            log.warning("OpenClaw hook for %s failed: HTTP %s %s", channel, res.status_code, res.text[:200])
+        else:
+            ok = True  # 200 means accepted; OpenClaw runs the agent and posts afterwards
+    return ok
 
 
 # ---------- direct: fixed-format message through the Telegram Bot API (fallback) ----------
@@ -156,7 +167,8 @@ async def run() -> None:
         while True:
             try:
                 async with client.stream("GET", f"{BACKEND}/api/stream") as stream:
-                    log.info("listening to %s/api/stream, sending %s+ via %s to chat %s", BACKEND, MIN_SEVERITY, VIA, CHAT_ID)
+                    dest = ", ".join(f"{c} {t}" for c, t in TARGETS) if VIA == "openclaw" else f"telegram {CHAT_ID}"
+                    log.info("listening to %s/api/stream, sending %s+ via %s to %s", BACKEND, MIN_SEVERITY, VIA, dest)
                     event = None
                     async for line in stream.aiter_lines():
                         if line.startswith("event: "):
@@ -175,12 +187,10 @@ async def run() -> None:
 
 
 def main() -> None:
-    if not CHAT_ID:
-        raise SystemExit("Set TELEGRAM_CHAT_ID in .env first.")
-    if VIA == "openclaw" and not (HOOK_URL and HOOK_TOKEN):
-        raise SystemExit("Set OPENCLAW_HOOK_URL and OPENCLAW_HOOK_TOKEN in .env, or use ALERT_VIA=direct.")
-    if VIA == "direct" and not BOT_TOKEN:
-        raise SystemExit("Set TELEGRAM_BOT_TOKEN in .env, or use ALERT_VIA=openclaw.")
+    if VIA == "openclaw" and not (HOOK_URL and HOOK_TOKEN and TARGETS):
+        raise SystemExit("Set OPENCLAW_HOOK_URL, OPENCLAW_HOOK_TOKEN and ALERT_TARGETS in .env, or use ALERT_VIA=direct.")
+    if VIA == "direct" and not (BOT_TOKEN and CHAT_ID):
+        raise SystemExit("Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env, or use ALERT_VIA=openclaw.")
     asyncio.run(run())
 
 
