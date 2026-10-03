@@ -362,6 +362,8 @@ SCENARIOS: dict[str, Scenario] = {
 }
 
 AUTO_SCENARIOS = [s.name for s in SCENARIOS.values() if s.auto]
+SCENARIO_SECONDS = 60  # a new scenario, and so a new incident, about every minute
+RECENT_SERVICES = 5  # a service sits out this many scenarios before erroring again
 
 
 def _pick(events: tuple[Event, ...]) -> Event:
@@ -415,25 +417,27 @@ class LogGenerator:
         self.warn_rate = warn_rate
         self.started = time.time()
         self.wave_period = random.uniform(90, 240)  # traffic gently rises and falls
-        self._order: list[str] = []
+        self._recent: list[str] = []  # services of the last few scenarios, newest last
         self._releases: list[dict] = []
         self._burst_until = 0.0
         self._pending: list[_Pending] = []  # one-off lines: deploys, recoveries, log_attack
         write_releases(self.started)
         self.scenario: Scenario = SCENARIOS[AUTO_SCENARIOS[0]]
         self.scenario_ends = 0.0
-        self._start(self._next_auto(), duration=random.uniform(90, 150), recover=False)
+        self._start(self._next_auto(), duration=SCENARIO_SECONDS, recover=False)
 
     def _next_auto(self) -> str:
-        if not self._order:
-            self._order = random.sample(AUTO_SCENARIOS, len(AUTO_SCENARIOS))
-        return self._order.pop()
+        """A random scenario on a service that has not errored recently, so it opens a new incident
+        instead of joining the last one (grouping merges same-service errors within its window)."""
+        fresh = [n for n in AUTO_SCENARIOS if SCENARIOS[n].service not in self._recent]
+        return random.choice(fresh or AUTO_SCENARIOS)
 
     def _start(self, name: str, duration: float, recover: bool = True) -> None:
         old = self.scenario
         if recover and old.recovery:
             self._pending.append(_Pending(old.service, "Info", _line("Info", 200, "POST /internal/health", old.recovery)))
         self.scenario = s = SCENARIOS[name]
+        self._recent = (self._recent + [s.service])[-RECENT_SERVICES:]
         now = time.time()
         self.scenario_ends = now + duration
         if s.release:
@@ -445,6 +449,9 @@ class LogGenerator:
             self._pending.append(_Pending(s.service, "Info", _line(
                 "Info", 200, "POST /internal/deploy",
                 f"Deployment completed: {s.service} v{s.release} rolled out to {pods}/{pods} pods")))
+        # Open with an error so every scenario shows up as a card even in a quiet stretch.
+        e = _pick(s.errors)
+        self._pending.append(_Pending(s.service, "Error", _line("Error", e.status, e.endpoint, e.message, e.exc)))
 
     def trigger(self, name: str) -> None:
         """Start a scenario now (used by the demo). Errors burst for the first 15 s."""
@@ -455,13 +462,13 @@ class LogGenerator:
             for e in s.errors:
                 self._pending.append(_Pending(s.service, "Error", _line("Error", e.status, e.endpoint, e.message)))
             return
-        self._start(name, duration=120)
+        self._start(name, duration=SCENARIO_SECONDS)
         self._burst_until = time.time() + 15
 
     def next_line(self) -> RawLine:
         now = time.time()
         if now >= self.scenario_ends:
-            self._start(self._next_auto(), duration=random.uniform(90, 150))
+            self._start(self._next_auto(), duration=SCENARIO_SECONDS)
 
         if self._pending:
             p = self._pending.pop(0)
