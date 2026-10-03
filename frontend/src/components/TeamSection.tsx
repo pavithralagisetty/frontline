@@ -22,7 +22,7 @@ interface Row {
 }
 
 // Owners always show; a backup shows up once they hold an open incident.
-export function TeamSection() {
+export function TeamSection({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   const { team, incidents } = useStore().state
 
   const rows = useMemo(() => {
@@ -50,13 +50,25 @@ export function TeamSection() {
   }, [team, incidents])
 
   if (rows.length === 0) return null
+  const busy = rows.filter((r) => r.open > 0).length
 
   return (
     <div className="flex flex-col gap-space-xs mt-2">
-      <div className="flex items-baseline justify-between">
-        <span className="text-label-sm uppercase tracking-wider text-outline">Team</span>
-        <span className="text-body-sm text-on-surface-variant">Service ownership and open incidents</span>
-      </div>
+      <button onClick={onToggle} className="group flex items-center justify-between text-left">
+        <span className="flex items-baseline gap-2">
+          <span className="text-label-sm uppercase tracking-wider text-outline">Team</span>
+          <span className="text-body-sm text-on-surface-variant">
+            {rows.length} people · {busy} with open incidents
+          </span>
+        </span>
+        <span className="flex items-center gap-1 h-6 px-2 rounded bg-surface-container-lowest text-label-sm text-on-surface shadow-[0_1px_2px_rgba(0,0,0,0.04)] group-hover:bg-surface-container-low transition-colors">
+          <span className={`material-symbols-outlined text-[14px] text-outline transition-transform ${open ? 'rotate-180' : ''}`}>
+            expand_more
+          </span>
+          {open ? 'Hide' : 'Show'}
+        </span>
+      </button>
+      {open && (
       <div className="w-full bg-surface-container-lowest rounded-xl p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2">
           {rows.map((r) => (
@@ -82,6 +94,7 @@ export function TeamSection() {
           ))}
         </div>
       </div>
+      )}
     </div>
   )
 }
