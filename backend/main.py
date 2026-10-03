@@ -15,6 +15,7 @@ from .agent.direct import DirectAgent
 from .agent.schema import TriageResult
 from .config import ROOT, settings
 from .context import Context, gather, load_owners
+from .escalation import Escalator
 from .generator import SCENARIOS, SERVICES, LogGenerator, RawLine
 from .grouping import OPEN, Grouper
 from .masking import mask
@@ -29,6 +30,14 @@ DIST = ROOT / "frontend" / "dist"
 generator = LogGenerator(settings.log_rate_per_sec, settings.error_rate, settings.warn_rate)
 grouper = Grouper(settings.group_window_seconds)
 agent = DirectAgent(settings)
+
+
+def publish_incident(inc: dict) -> None:
+    refresh_open_count()
+    hub.publish("incident_updated", inc)
+
+
+escalator = Escalator(settings.escalation_seconds, publish_incident)
 MAX_INCIDENTS = 50
 _tasks: set[asyncio.Task] = set()  # keep references so triage tasks are not garbage collected
 
@@ -131,8 +140,9 @@ async def run_triage(inc: dict) -> None:
     )
     stats.incidents_assigned += 1
     stats.assign_seconds.append(now - inc["first_seen"])
-    refresh_open_count()
-    hub.publish("incident_updated", inc)
+    if inc["severity"] == "Critical":
+        escalator.start(inc)  # sets escalate_at; at zero it moves to the backup
+    publish_incident(inc)
     log.info("%s %s -> %s (%s ms)", inc["id"], inc["severity"], owner_name, inc["analysis_ms"])
 
 
@@ -210,6 +220,53 @@ async def stream(request: Request) -> StreamingResponse:
 
     headers = {"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     return StreamingResponse(events(), media_type="text/event-stream", headers=headers)
+
+
+def _incident(inc_id: str) -> dict:
+    inc = hub.incidents.get(inc_id)
+    if not inc:
+        raise HTTPException(404, "Unknown incident")
+    if inc["status"] == "analyzing":
+        raise HTTPException(409, "Incident is still being analyzed")
+    return inc
+
+
+@app.post("/api/incidents/{inc_id}/ack")
+def ack(inc_id: str) -> dict:
+    inc = _incident(inc_id)
+    if inc["status"] in ("assigned", "escalated"):
+        escalator.cancel(inc_id)
+        inc.update(status="acknowledged", acknowledged_at=time.time(), escalate_at=None)
+        publish_incident(inc)
+    return inc
+
+
+@app.post("/api/incidents/{inc_id}/reassign")
+def reassign(inc_id: str) -> dict:
+    """Hand the incident to the other person (owner <-> backup). A human acted, so the countdown stops."""
+    inc = _incident(inc_id)
+    if inc["status"] == "resolved" or not inc["backup"]:
+        return inc
+    escalator.cancel(inc_id)
+    current, other = inc["owner"], inc["backup"]
+    inc.update(owner=other, backup=current, previous_owner=current, escalate_at=None)
+    if inc["status"] == "escalated":
+        inc["status"] = "assigned"
+    inc["agent_steps"] = inc["agent_steps"] + [
+        {"name": "Reassigned", "detail": f"{current['name']} -> {other['name']}", "done": True}
+    ]
+    publish_incident(inc)
+    return inc
+
+
+@app.post("/api/incidents/{inc_id}/resolve")
+def resolve(inc_id: str) -> dict:
+    inc = _incident(inc_id)
+    if inc["status"] != "resolved":
+        escalator.cancel(inc_id)
+        inc.update(status="resolved", resolved_at=time.time(), escalate_at=None)
+        publish_incident(inc)
+    return inc
 
 
 @app.post("/api/demo/trigger/{scenario}")

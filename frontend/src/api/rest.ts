@@ -1,4 +1,4 @@
-import type { StateSnapshot } from '../types'
+import type { Incident, StateSnapshot } from '../types'
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(path, init)
@@ -7,3 +7,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const getState = () => request<StateSnapshot>('/api/state')
+
+export type IncidentAction = 'ack' | 'reassign' | 'resolve'
+
+export const incidentAction = (id: string, action: IncidentAction) =>
+  request<Incident>(`/api/incidents/${encodeURIComponent(id)}/${action}`, { method: 'POST' })

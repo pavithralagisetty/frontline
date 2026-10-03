@@ -1,6 +1,11 @@
 """Counters for the top bar and footer."""
 
+import platform
 from dataclasses import dataclass, field
+
+import psutil
+
+DEMO_RAM_GB = 128  # the Dell GB10 has 128 GB unified memory; the footer always shows usage out of this
 
 
 @dataclass
@@ -23,6 +28,9 @@ class Stats:
             "incidents_assigned": self.incidents_assigned,
             "avg_time_to_assign_s": avg,
             "open_incidents": self.open_incidents,
+            "ram_used_gb": round(psutil.virtual_memory().used / 1024**3, 1),
+            "ram_total_gb": DEMO_RAM_GB,
+            "machine": platform.node().split(".")[0],
         }
 
 

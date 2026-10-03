@@ -1,4 +1,5 @@
 import { useEventStream } from './api/useEventStream'
+import { Footer } from './components/Footer'
 import { LogsPanel } from './components/LogsPanel'
 import { TopBar } from './components/TopBar'
 import { TriagePanel } from './components/TriagePanel'
@@ -18,6 +19,7 @@ function Dashboard() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   )
 }

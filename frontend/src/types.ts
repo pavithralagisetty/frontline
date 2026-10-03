@@ -17,6 +17,9 @@ export interface Stats {
   incidents_assigned: number
   avg_time_to_assign_s: number | null
   open_incidents: number
+  ram_used_gb: number
+  ram_total_gb: number
+  machine: string
 }
 
 export interface AppConfig {
@@ -60,6 +63,10 @@ export interface Incident {
   analysis_ms: number | null
   assigned_at: number | null
   escalate_at: number | null
+  escalated_at: number | null
+  acknowledged_at: number | null
+  resolved_at: number | null
+  previous_owner: Person | null
   confidence: number | null
   line_ids: number[]
 }

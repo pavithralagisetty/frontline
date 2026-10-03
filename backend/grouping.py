@@ -45,6 +45,10 @@ class Grouper:
             "analysis_ms": None,
             "assigned_at": None,
             "escalate_at": None,
+            "escalated_at": None,
+            "acknowledged_at": None,
+            "resolved_at": None,
+            "previous_owner": None,
             "confidence": None,
             "line_ids": [line["id"]],
         }

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useNow } from '../lib/useNow'
 import { useStore } from '../state/store'
 import { IncidentCard } from './IncidentCard'
+import { TeamSection } from './TeamSection'
 
 const RANK = { Critical: 0, High: 1, Medium: 2, Low: 3 } as const
 
@@ -51,7 +52,7 @@ export function TriagePanel() {
             <span className="text-body-md">Watching Error lines. New incidents will appear here.</span>
           </div>
         ) : (
-          <div className="flex flex-col gap-space-sm max-h-[calc(100vh-12.5rem)] overflow-y-auto pb-1 px-0.5 -mx-0.5">
+          <div className="flex flex-col gap-space-sm max-h-[calc(100vh-22rem)] overflow-y-auto pb-1 px-0.5 -mx-0.5">
             {incidents.map((inc) => (
               <IncidentCard
                 key={inc.id}
@@ -65,6 +66,7 @@ export function TriagePanel() {
           </div>
         )}
       </div>
+      <TeamSection />
     </section>
   )
 }
