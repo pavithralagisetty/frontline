@@ -4,7 +4,7 @@
 @import "@fontsource/inter/600.css";
 @import "@fontsource/jetbrains-mono/400.css";
 @import "@fontsource/jetbrains-mono/500.css";
-@import "material-symbols/outlined.css";
+@import "material-symbols/outlined.css" layer(base);
 
 /* Tokens copied from the Stitch export in /design/model.html */
 @theme {
@@ -55,6 +55,10 @@
   --color-tertiary-container: #c9343b;
   --color-outline-variant: #c4c5d6;
   --color-secondary: #006e27;
+
+  /* Not in the Stitch export: the plan asks for amber Warn dots. */
+  --color-warn: #b45309;
+  --color-warn-dot: #f59e0b;
 
   --radius: 0.25rem;
   --radius-lg: 0.5rem;
@@ -115,4 +119,15 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* New log rows fade in; height stays fixed so nothing jumps. */
+@keyframes row-in {
+  from {
+    opacity: 0;
+    background-color: var(--color-primary-fixed);
+  }
+}
+.row-in {
+  animation: row-in 600ms ease-out;
 }

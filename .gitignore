@@ -10,3 +10,4 @@ shared/context/*
 !shared/*/.gitkeep
 .DS_Store
 .claude/settings.local.json
+backend/data/releases.json
