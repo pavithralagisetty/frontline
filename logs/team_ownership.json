@@ -1,0 +1,12 @@
+{
+  "auth-service": "Digital Identity Team",
+  "accounts-service": "Core Accounts Team",
+  "payments-service": "Payments Team",
+  "cards-service": "Cards Team",
+  "transfers-service": "Money Movement Team",
+  "wire-gateway": "Treasury Integrations Team",
+  "fraud-service": "Fraud and Risk Team",
+  "ledger-service": "Core Ledger Team",
+  "loans-service": "Lending Team",
+  "notification-service": "Customer Comms Team"
+}
