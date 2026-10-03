@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "material-symbols/outlined.css";
+
+/* Tokens copied from the Stitch export in /design/model.html */
+@theme {
+  --color-inverse-on-surface: #f1f1f0;
+  --color-surface-dim: #dadad9;
+  --color-background: #f9f9f8;
+  --color-on-primary-fixed: #001551;
+  --color-on-background: #1a1c1c;
+  --color-surface-bright: #f9f9f8;
+  --color-secondary-container: #98f89e;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-high: #e8e8e7;
+  --color-on-secondary-fixed-variant: #00531b;
+  --color-on-primary-container: #eeeeff;
+  --color-on-error-container: #93000a;
+  --color-primary: #1d49c3;
+  --color-surface-variant: #e2e2e2;
+  --color-inverse-primary: #b7c4ff;
+  --color-on-tertiary: #ffffff;
+  --color-secondary-fixed-dim: #7ddb84;
+  --color-on-secondary-container: #0a742b;
+  --color-tertiary-fixed-dim: #ffb3b0;
+  --color-on-tertiary-fixed-variant: #92011a;
+  --color-tertiary: #a71826;
+  --color-on-secondary-fixed: #002107;
+  --color-error-container: #ffdad6;
+  --color-on-primary-fixed-variant: #0039b4;
+  --color-error: #ba1a1a;
+  --color-secondary-fixed: #98f89e;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed: #dce1ff;
+  --color-outline: #747685;
+  --color-on-tertiary-fixed: #410006;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-error: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container: #eeeeed;
+  --color-surface-tint: #2c54ce;
+  --color-on-surface-variant: #444654;
+  --color-surface: #f9f9f8;
+  --color-on-tertiary-container: #ffebea;
+  --color-primary-container: #3e63dd;
+  --color-primary-fixed-dim: #b7c4ff;
+  --color-tertiary-fixed: #ffdad8;
+  --color-on-surface: #1a1c1c;
+  --color-surface-container-low: #f3f4f3;
+  --color-inverse-surface: #2f3130;
+  --color-tertiary-container: #c9343b;
+  --color-outline-variant: #c4c5d6;
+  --color-secondary: #006e27;
+
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 16px;
+  --text-body-md: 13px;
+  --text-body-md--line-height: 18px;
+  --text-body-md--letter-spacing: -0.003em;
+  --text-body-lg: 14px;
+  --text-body-lg--line-height: 22px;
+  --text-body-lg--letter-spacing: -0.005em;
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.02em;
+  --text-label-sm--font-weight: 500;
+  --text-label-md: 13px;
+  --text-label-md--line-height: 18px;
+  --text-label-md--letter-spacing: -0.005em;
+  --text-label-md--font-weight: 500;
+  --text-headline-sm: 15px;
+  --text-headline-sm--line-height: 20px;
+  --text-headline-sm--letter-spacing: -0.01em;
+  --text-headline-sm--font-weight: 500;
+  --text-headline-md: 18px;
+  --text-headline-md--line-height: 24px;
+  --text-headline-md--letter-spacing: -0.015em;
+  --text-mono-code: 12px;
+  --text-mono-code--line-height: 16px;
+  --text-mono-code--letter-spacing: -0.01em;
+  --text-mono-id: 11px;
+  --text-mono-id--line-height: 14px;
+  --text-mono-id--letter-spacing: 0.01em;
+  --text-mono-id--font-weight: 500;
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+    @apply bg-surface font-sans text-body-md text-on-surface antialiased;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

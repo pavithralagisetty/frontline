@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+frontend/dist/
+shared/events/*
+shared/results/*
+shared/context/*
+!shared/*/.gitkeep
+.DS_Store
+.claude/settings.local.json

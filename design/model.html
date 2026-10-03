@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#f1f1f0", "surface-dim": "#dadad9", "background": "#f9f9f8", "on-primary-fixed": "#001551", "on-background": "#1a1c1c", "surface-bright": "#f9f9f8", "secondary-container": "#98f89e", "on-secondary": "#ffffff", "surface-container-high": "#e8e8e7", "on-secondary-fixed-variant": "#00531b", "on-primary-container": "#eeeeff", "on-error-container": "#93000a", "primary": "#1d49c3", "surface-variant": "#e2e2e2", "inverse-primary": "#b7c4ff", "on-tertiary": "#ffffff", "secondary-fixed-dim": "#7ddb84", "on-secondary-container": "#0a742b", "tertiary-fixed-dim": "#ffb3b0", "on-tertiary-fixed-variant": "#92011a", "tertiary": "#a71826", "on-secondary-fixed": "#002107", "error-container": "#ffdad6", "on-primary-fixed-variant": "#0039b4", "error": "#ba1a1a", "secondary-fixed": "#98f89e", "on-primary": "#ffffff", "primary-fixed": "dce1ff", "outline": "#747685", "on-tertiary-fixed": "#410006", "surface-container-highest": "#e2e2e2", "on-error": "#ffffff", "surface-container-lowest": "#ffffff", "surface-container": "#eeeeed", "surface-tint": "#2c54ce", "on-surface-variant": "#444654", "surface": "#f9f9f8", "on-tertiary-container": "#ffebea", "primary-container": "#3e63dd", "primary-fixed-dim": "#b7c4ff", "tertiary-fixed": "#ffdad8", "on-surface": "#1a1c1c", "surface-container-low": "#f3f4f3", "inverse-surface": "#2f3130", "tertiary-container": "#c9343b", "outline-variant": "#c4c5d6", "secondary": "#006e27" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "margin": "1rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-md": "1rem", "gutter": "1rem", "gutter-desktop": "1.5rem" }, "fontFamily": { "body-sm": ["Inter"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "mono-code": ["JetBrains Mono"], "body-md": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "mono-id": ["JetBrains Mono"], "label-md": ["Inter"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "500" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "mono-code": ["12px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.003em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["14px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "mono-id": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "500" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.005em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased" data-mode="connect"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">hub</span></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Log Triage Agent</span></div><div class="hidden xl:flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-secondary-fixed/30 text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="">Running locally on Dell GB10 · No cloud AI</span></div></div><div class="flex-1 max-w-md mx-auto hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[18px] text-outline pointer-events-none">search</span><input class="w-full h-8 pl-8 pr-12 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md text-body-md rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container shadow-[0_1px_2px_rgba(0,0,0,0.03)]" placeholder="Search logs, incidents, services..." type="text"><div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono-id text-mono-id pointer-events-none">⌘K</div></div></div><div class="flex items-center gap-space-lg shrink-0"><div class="hidden 2xl:flex items-center gap-space-lg"><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Log lines processed</span><span class="font-mono-code text-[15px] leading-5 text-on-surface font-medium">48,210</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Alerts sent</span><span class="font-mono-code text-[15px] leading-5 text-on-surface font-medium">6</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Avg time to alert</span><span class="font-mono-code text-[15px] leading-5 text-on-surface font-medium">9s</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Open incidents</span><span class="font-mono-code text-[15px] leading-5 text-tertiary font-medium">3</span></div></div><div class="flex items-center gap-space-sm"><button class="h-8 px-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container hover:text-on-surface text-on-surface-variant font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]"><span class="material-symbols-outlined text-[16px] text-secondary">pause_circle</span><span class="hidden sm:inline">Live Feed</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<div class="w-full px-space-lg py-space-lg lg:px-space-xl lg:py-space-xl">
+<!-- Main 2-Column Split Workspace -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- ================= LEFT COLUMN: LIVE LOGS (~45%) ================= -->
+<section class="xl:col-span-5 flex flex-col min-w-0">
+<!-- Section Header Area -->
+<div class="flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Live logs</span>
+
+</div>
+<!-- Controls Bar: Filter tabs + Pause button -->
+<div class="flex items-center justify-between gap-space-sm mt-1">
+<div class="flex items-center gap-1.5 overflow-x-auto py-1">
+<button class="h-6 px-2.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm transition-colors">All</button>
+<button class="h-6 px-2 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-colors">
+<span class="">Flagged</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-mono-id text-[10px]">3</span>
+</button>
+<button class="h-6 px-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-colors">login</button>
+<button class="h-6 px-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-colors">checkout</button>
+<button class="h-6 px-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-colors">search</button>
+<button class="h-6 px-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-colors">inventory</button>
+</div>
+<button class="h-6 px-2 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm flex items-center gap-1 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:bg-surface-container-low transition-colors shrink-0" id="stream-toggle-btn">
+<span class="material-symbols-outlined text-[14px] text-outline">pause</span>
+<span class="">Pause</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="h-8 bg-surface-container-low text-outline font-label-sm text-[11px] uppercase tracking-wider">
+<th class="pl-3.5 pr-2 font-medium w-16">Time</th>
+<th class="px-2 font-medium w-20">Service</th>
+<th class="px-2 font-medium w-16">Level</th>
+<th class="px-2 font-medium">Message</th>
+<th class="pr-3.5 pl-2 font-medium w-16 text-right">Ref</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-[12px] divide-y divide-surface-container-high">
+<!-- Row 1: Selected / Flagged -->
+<tr class="h-9 bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:04:12</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>Error</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="POST /v1/charges 500 InternalServerError: Connection pool exhausted">POST /v1/charges 500 InternalServerError: Connection pool exhausted</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-error-container text-tertiary font-mono-id text-[10px] font-medium">INC 7</span></td>
+</tr>
+<!-- Row 2: Flagged -->
+<tr class="h-9 bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:04:08</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>Error</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="StripeClientException: timeout after 5000ms upstream db-primary">StripeClientException: timeout after 5000ms upstream db-primary</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-error-container text-tertiary font-mono-id text-[10px] font-medium">INC 7</span></td>
+</tr>
+<!-- Row 3: Warn -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:03:59</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">inventory</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-tertiary-container"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>Warn</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Cache miss ratio spiked to 74% on cluster inv-redis-02">Cache miss ratio spiked to 74% on cluster inv-redis-02</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 4: Flagged -->
+<tr class="h-9 bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:03:45</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>Error</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="PaymentGatewayWorker rejected payload id=tx_991823">PaymentGatewayWorker rejected payload id=tx_991823</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-error-container text-tertiary font-mono-id text-[10px] font-medium">INC 7</span></td>
+</tr>
+<!-- Row 5: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:03:22</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">login</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="User session refreshed uid=usr_88219 (OAuth2 Bearer)">User session refreshed uid=usr_88219 (OAuth2 Bearer)</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 6: Flagged Warn -->
+<tr class="h-9 bg-tertiary-fixed/30 hover:bg-tertiary-fixed/40 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:02:58</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">search</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-tertiary-container"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>Warn</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="Elasticsearch node es-data-04 response time &gt; 850ms">Elasticsearch node es-data-04 response time &gt; 850ms</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-mono-id text-[10px] font-medium">INC 6</span></td>
+</tr>
+<!-- Row 7: Flagged Error -->
+<tr class="h-9 bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:02:40</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">search</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>Error</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="SearchClusterDegradedException: partial replica offline">SearchClusterDegradedException: partial replica offline</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-mono-id text-[10px] font-medium">INC 6</span></td>
+</tr>
+<!-- Row 8: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:02:15</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">inventory</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Stock sync batch completed (4,210 SKUs synced in 410ms)">Stock sync batch completed (4,210 SKUs synced in 410ms)</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 9: Flagged Error -->
+<tr class="h-9 bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:01:50</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">login</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>Error</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface truncate max-w-[200px]" title="Failed password attempt 4/5 uid=usr_3491 ip=194.26.29.11">Failed password attempt 4/5 uid=usr_3491 ip=194.26.29.11</td>
+<td class="pr-3.5 pl-2 text-right whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-mono-id text-[10px] font-medium">INC 5</span></td>
+</tr>
+<!-- Row 10: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:01:12</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">login</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="OAuth token issued for client_id=ios_mobile_app">OAuth token issued for client_id=ios_mobile_app</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 11: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:00:44</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Webhook dispatched to endpoint wh_partner_ups">Webhook dispatched to endpoint wh_partner_ups</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 12: Warn -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">14:00:20</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">inventory</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-tertiary-container"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>Warn</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Low stock threshold reached for sku_99482 (qty=4)">Low stock threshold reached for sku_99482 (qty=4)</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 13: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:59:55</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">search</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Query autocomplete index rebuild triggered">Query autocomplete index rebuild triggered</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 14: Info Release -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:59:30</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Release 2.3 deployment confirmed across 12 pods (commit 8a1f4c)">Release 2.3 deployment confirmed across 12 pods (commit 8a1f4c)</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 15: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:59:12</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">inventory</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Inventory healthcheck ping returned 200 OK (3ms)">Inventory healthcheck ping returned 200 OK (3ms)</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 16: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:58:50</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">login</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Passkey authentication success for admin@acme.corp">Passkey authentication success for admin@acme.corp</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 17: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:58:44</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">checkout</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Database migration v142 applied in 28ms">Database migration v142 applied in 28ms</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 18: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:58:38</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">search</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Warmup query benchmark 4.2ms avg">Warmup query benchmark 4.2ms avg</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 19: Warn -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:58:32</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">login</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-tertiary-container"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>Warn</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Rate-limit warning for IP subnet 192.168.1.0/24">Rate-limit warning for IP subnet 192.168.1.0/24</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+<!-- Row 20: Info -->
+<tr class="h-9 hover:bg-surface-container-low transition-colors">
+<td class="pl-3.5 pr-2 font-mono-code text-[11px] text-outline whitespace-nowrap">13:58:20</td>
+<td class="px-2"><span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-[10px]">inventory</span></td>
+<td class="px-2 whitespace-nowrap"><span class="inline-flex items-center gap-1.5 font-label-sm text-outline"><span class="w-1.5 h-1.5 rounded-full bg-outline"></span>Info</span></td>
+<td class="px-2 font-mono-code text-[11px] text-on-surface-variant truncate max-w-[200px]" title="Redis replica sync ack from host inv-redis-03">Redis replica sync ack from host inv-redis-03</td>
+<td class="pr-3.5 pl-2 text-right"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ================= RIGHT COLUMN: AGENT TRIAGE & TEAM (~55%) ================= -->
+<section class="xl:col-span-7 flex flex-col gap-space-lg min-w-0">
+<!-- AGENT TRIAGE SECTION -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Agent triage</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 active incidents identified by local model</span>
+</div>
+<span class="font-mono-code text-[11px] text-outline">Engine: Llama-3-8B-Q4_K_M (Ollama Dell GB10)</span>
+</div>
+<!-- INCIDENT 1: Selected / Active -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_16px_-4px_rgba(62,99,221,0.12),0_1px_3px_rgba(0,0,0,0.04)] bg-primary/5 transition-all">
+<!-- Header line -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-medium">Critical</span>
+<span class="font-mono-id text-mono-id text-on-surface font-medium">INC 7</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-error font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                  Escalated
+                </span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-error-container text-on-error-container font-mono-code text-[11px] font-medium">
+<span class="material-symbols-outlined text-[13px]">timer</span>
+<span class="">Escalating to backup in 1:42</span>
+</div>
+</div>
+<!-- Title & count/timing -->
+<div class="mt-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Checkout payments failing</h2>
+
+</div>
+<!-- Diagnostic Details Panel -->
+<div class="bg-surface-container-low p-3 rounded-lg my-3 space-y-2 font-body-sm text-body-sm">
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">Likely cause:</span>
+<span class="font-medium text-on-surface">Checkout release 2.3 went out at 1:58 PM</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">First step:</span>
+<span class="font-medium text-on-surface">Roll back release 2.3</span>
+</div>
+</div>
+<!-- Assigned to & Primary actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center font-label-sm text-on-primary-fixed font-medium">MC</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Maya Chen</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Lead Backend · checkout service</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-8 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">Reassign</button>
+<button class="h-8 px-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">undo</span>
+<span class="">Acknowledge &amp; Roll Back</span>
+</button>
+</div>
+</div>
+<!-- Collapsible Agent Reasoning Steps -->
+
+</div>
+<!-- INCIDENT 2: High / Acknowledged -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-medium">High</span>
+<span class="font-mono-id text-mono-id text-on-surface font-medium">INC 6</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary-container font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                  Acknowledged
+                </span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Acknowledged 3m ago</span>
+</div>
+<div class="mt-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Search cluster replica node offline</h3>
+
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg my-3 space-y-1.5 font-body-sm text-body-sm">
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">Likely cause:</span>
+<span class="font-medium text-on-surface">Elasticsearch host es-data-04 OOM killer triggered</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">First step:</span>
+<span class="font-medium text-on-surface">Restart pod and increase memory request to 16GB</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-tertiary-fixed-dim flex items-center justify-center font-label-sm text-on-tertiary-fixed font-medium">AR</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Arjun Rao</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Search Platform · search service</span>
+</div>
+</div>
+<div class="flex items-center gap-2"><button class="h-7 px-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">Reassign</button><button class="h-7 px-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">View Pod Logs</button></div>
+</div>
+</div>
+<!-- INCIDENT 3: Medium / Alerted -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-medium">Medium</span>
+<span class="font-mono-id text-mono-id text-on-surface font-medium">INC 5</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Alerted
+                </span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Dispatched 12m ago</span>
+</div>
+<div class="mt-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Spike in failed authentication attempts</h3>
+
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg my-3 space-y-1.5 font-body-sm text-body-sm">
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">Likely cause:</span>
+<span class="font-medium text-on-surface">Credential stuffing attempts from subnet 194.26.29.0/24</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">First step:</span>
+<span class="font-medium text-on-surface">Apply Cloudflare rate-limiting rule to /v1/auth</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center font-label-sm text-on-secondary-fixed font-medium">SM</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Sofia Martinez</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Security &amp; Auth · login service</span>
+</div>
+</div>
+<div class="flex items-center gap-2"><button class="h-7 px-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">Reassign</button><button class="h-7 px-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">Apply IP Block</button></div>
+</div>
+</div>
+<!-- INCIDENT 4: Low / Resolved -->
+<div class="w-full bg-surface-container-lowest/80 rounded-xl p-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)] opacity-85 hover:opacity-100 transition-opacity">
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-outline font-label-sm text-label-sm font-medium">Low</span>
+<span class="font-mono-id text-mono-id text-on-surface-variant font-medium">INC 4</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Resolved
+                </span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Resolved at 1:42 PM (lasted 11m)</span>
+</div>
+<div class="mt-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Cache miss ratio elevated on inv-redis-02</h3>
+
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg my-3 space-y-1.5 font-body-sm text-body-sm">
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">Likely cause:</span>
+<span class="font-medium text-on-surface">Cache key invalidation storm after catalog rebuild</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-on-surface-variant shrink-0 w-24">First step:</span>
+<span class="font-medium text-on-surface">Resolved: Keys repopulated, miss ratio returned to 4.2%</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-fixed-dim flex items-center justify-center font-label-sm text-on-primary-fixed font-medium">DK</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Daniel Kim</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Core Inventory · inventory service</span>
+</div>
+</div>
+<div class="flex items-center gap-2"><button class="h-7 px-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">Reassign</button><span class="font-label-sm text-[11px] text-outline">Post-mortem drafted</span></div>
+</div>
+</div>
+</div>
+<!-- ================= TEAM SECTION ================= -->
+<div class="flex flex-col gap-space-xs mt-2">
+<div class="flex items-baseline justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Team</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Service ownership and active triage loads</span>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-space-md">
+<!-- Member 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-label-md text-on-primary-fixed font-medium shrink-0">MC</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Maya Chen</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant truncate">checkout</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-tertiary font-label-sm text-[11px] font-medium shrink-0">1 open</span>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center font-label-md text-on-tertiary-fixed font-medium shrink-0">AR</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Arjun Rao</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant truncate">search</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-[11px] font-medium shrink-0">1 open</span>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center font-label-md text-on-secondary-fixed font-medium shrink-0">SM</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Sofia Martinez</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant truncate">login</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-[11px] font-medium shrink-0">1 open</span>
+</div>
+<!-- Member 4 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center font-label-md text-on-primary-fixed font-medium shrink-0">DK</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Daniel Kim</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant truncate">inventory</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-outline font-label-sm text-[11px] font-medium shrink-0">0 open</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const pauseBtn = document.getElementById('stream-toggle-btn');
+    let isPaused = false;
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', function() {
+        isPaused = !isPaused;
+        const icon = pauseBtn.querySelector('.material-symbols-outlined');
+        const text = pauseBtn.querySelector('span:last-child');
+        if (isPaused) {
+          icon.textContent = 'play_arrow';
+          text.textContent = 'Resume';
+          pauseBtn.classList.add('bg-secondary-fixed/30', 'text-on-secondary-container');
+        } else {
+          icon.textContent = 'pause';
+          text.textContent = 'Pause';
+          pauseBtn.classList.remove('bg-secondary-fixed/30', 'text-on-secondary-container');
+        }
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low py-6 mt-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"><div class="w-full px-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-on-surface-variant"><span class="">Engine version: v2.4.1-local · Core Agent Active</span><span class="">Local Machine Dell GB10 • RAM 12.4GB / 32GB</span></div></footer>
+
+
+
+</body></html>
