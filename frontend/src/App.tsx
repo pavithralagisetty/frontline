@@ -1,6 +1,7 @@
 import { useEventStream } from './api/useEventStream'
 import { Footer } from './components/Footer'
 import { LogsPanel } from './components/LogsPanel'
+import { TeamSection } from './components/TeamSection'
 import { TopBar } from './components/TopBar'
 import { TriagePanel } from './components/TriagePanel'
 import { StoreProvider } from './state/store'
@@ -17,6 +18,7 @@ function Dashboard() {
             <LogsPanel />
             <TriagePanel />
           </div>
+          <TeamSection />
         </div>
       </main>
       <Footer />

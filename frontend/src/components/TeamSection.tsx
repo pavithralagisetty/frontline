@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { shortService } from '../lib/format'
 import { useStore } from '../state/store'
 import type { Severity } from '../types'
@@ -22,8 +22,9 @@ interface Row {
 }
 
 // Owners always show; a backup shows up once they hold an open incident.
-export function TeamSection({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+export function TeamSection() {
   const { team, incidents } = useStore().state
+  const [open, setOpen] = useState(false)
 
   const rows = useMemo(() => {
     const byName = new Map<string, Row>()
@@ -53,8 +54,8 @@ export function TeamSection({ open, onToggle }: { open: boolean; onToggle: () =>
   const busy = rows.filter((r) => r.open > 0).length
 
   return (
-    <div className="flex flex-col gap-space-xs mt-2">
-      <button onClick={onToggle} className="group flex items-center justify-between text-left">
+    <div className="flex flex-col gap-space-xs mt-space-lg">
+      <button onClick={() => setOpen(!open)} className="group flex items-center justify-between text-left">
         <span className="flex items-baseline gap-2">
           <span className="text-label-sm uppercase tracking-wider text-outline">Team</span>
           <span className="text-body-sm text-on-surface-variant">
@@ -70,7 +71,7 @@ export function TeamSection({ open, onToggle }: { open: boolean; onToggle: () =>
       </button>
       {open && (
       <div className="w-full bg-surface-container-lowest rounded-xl p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
           {rows.map((r) => (
             <div
               key={r.name}
