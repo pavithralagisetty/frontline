@@ -26,6 +26,9 @@ export function useEventStream() {
 
     es.addEventListener('log', (e) => dispatch({ type: 'log', line: JSON.parse(e.data) }))
     es.addEventListener('stats', (e) => dispatch({ type: 'stats', stats: JSON.parse(e.data) }))
+    const onIncident = (e: MessageEvent) => dispatch({ type: 'incident', incident: JSON.parse(e.data) })
+    es.addEventListener('incident_created', onIncident)
+    es.addEventListener('incident_updated', onIncident)
 
     return () => es.close()
   }, [dispatch])

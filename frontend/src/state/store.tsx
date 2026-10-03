@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, type Dispatch, type ReactNode } from 'react'
-import type { AppConfig, LogFilter, LogLine, StateSnapshot, Stats } from '../types'
+import type { AppConfig, Incident, LogFilter, LogLine, StateSnapshot, Stats, TeamMember } from '../types'
 
 const MAX_LOGS = 200
 
@@ -7,6 +7,9 @@ export interface State {
   logs: LogLine[] // newest first
   frozenLogs: LogLine[] | null // set while paused
   animateFromId: number // rows with a higher id arrived live and animate in
+  incidents: Record<string, Incident>
+  team: TeamMember[]
+  selectedIncident: string | null
   stats: Stats | null
   config: AppConfig | null
   filter: LogFilter
@@ -18,6 +21,8 @@ export type Action =
   | { type: 'snapshot'; data: StateSnapshot }
   | { type: 'log'; line: LogLine }
   | { type: 'stats'; stats: Stats }
+  | { type: 'incident'; incident: Incident }
+  | { type: 'select'; id: string | null }
   | { type: 'connected'; value: boolean }
   | { type: 'setFilter'; filter: LogFilter }
   | { type: 'setSearch'; search: string }
@@ -27,6 +32,9 @@ const initial: State = {
   logs: [],
   frozenLogs: null,
   animateFromId: Number.MAX_SAFE_INTEGER,
+  incidents: {},
+  team: [],
+  selectedIncident: null,
   stats: null,
   config: null,
   filter: { kind: 'all' },
@@ -42,6 +50,8 @@ function reducer(state: State, action: Action): State {
         ...state,
         logs,
         animateFromId: logs[0]?.id ?? 0,
+        incidents: Object.fromEntries(action.data.incidents.map((i) => [i.id, i])),
+        team: action.data.team,
         stats: action.data.stats,
         config: action.data.config,
       }
@@ -53,6 +63,10 @@ function reducer(state: State, action: Action): State {
     }
     case 'stats':
       return { ...state, stats: action.stats }
+    case 'incident':
+      return { ...state, incidents: { ...state.incidents, [action.incident.id]: action.incident } }
+    case 'select':
+      return { ...state, selectedIncident: action.id === state.selectedIncident ? null : action.id }
     case 'connected':
       return { ...state, connected: action.value }
     case 'setFilter':

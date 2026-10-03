@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
+import type { Severity } from '../types'
 import { useStore } from '../state/store'
 import { FilterChips } from './FilterChips'
 import { LogTable } from './LogTable'
@@ -7,6 +8,13 @@ export function LogsPanel() {
   const { state, dispatch } = useStore()
   const paused = state.frozenLogs !== null
   const source = state.frozenLogs ?? state.logs
+
+  const severityById = useMemo(() => {
+    const m: Record<string, Severity | null> = {}
+    for (const inc of Object.values(state.incidents)) m[inc.id] = inc.severity
+    return m
+  }, [state.incidents])
+  const onSelectIncident = useCallback((id: string) => dispatch({ type: 'select', id }), [dispatch])
 
   const flaggedCount = useMemo(() => source.filter((l) => l.level === 'Error').length, [source])
 
@@ -43,7 +51,13 @@ export function LogsPanel() {
           </button>
         </div>
       </div>
-      <LogTable lines={visible} animateFromId={state.animateFromId} />
+      <LogTable
+        lines={visible}
+        animateFromId={state.animateFromId}
+        severityById={severityById}
+        selectedIncident={state.selectedIncident}
+        onSelectIncident={onSelectIncident}
+      />
     </section>
   )
 }

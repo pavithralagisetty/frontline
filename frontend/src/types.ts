@@ -26,10 +26,55 @@ export interface AppConfig {
   services: string[]
 }
 
+export type Severity = 'Critical' | 'High' | 'Medium' | 'Low'
+export type IncidentStatus = 'analyzing' | 'assigned' | 'acknowledged' | 'escalated' | 'resolved'
+
+export interface Person {
+  name: string
+  initials: string
+  team: string | null
+}
+
+export interface AgentStep {
+  name: string
+  detail: string
+  done: boolean
+}
+
+export interface Incident {
+  id: string
+  service: string
+  status: IncidentStatus
+  severity: Severity | null // null while analyzing
+  title: string | null
+  count: number
+  first_seen: number
+  last_seen: number
+  first_message: string
+  likely_cause: string | null
+  first_step: string | null
+  owner: Person | null
+  backup: Person | null
+  team: string | null
+  agent_steps: AgentStep[]
+  analysis_ms: number | null
+  assigned_at: number | null
+  escalate_at: number | null
+  confidence: number | null
+  line_ids: number[]
+}
+
+export interface TeamMember {
+  service: string
+  team: string
+  name: string
+  initials: string
+}
+
 export interface StateSnapshot {
   logs: LogLine[] // oldest first
-  incidents: unknown[]
-  team: unknown[]
+  incidents: Incident[]
+  team: TeamMember[]
   stats: Stats
   config: AppConfig
 }

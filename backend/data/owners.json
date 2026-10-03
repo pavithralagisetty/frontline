@@ -1,0 +1,12 @@
+{
+  "auth-service":         { "team": "Digital Identity Team",      "owner": { "name": "Sofia Martinez", "initials": "SM" }, "backup": { "name": "Liam O'Brien",  "initials": "LO" } },
+  "accounts-service":     { "team": "Core Accounts Team",         "owner": { "name": "Daniel Kim",     "initials": "DK" }, "backup": { "name": "Hannah Park",   "initials": "HP" } },
+  "payments-service":     { "team": "Payments Team",              "owner": { "name": "Maya Chen",      "initials": "MC" }, "backup": { "name": "Marcus Lee",    "initials": "ML" } },
+  "cards-service":        { "team": "Cards Team",                 "owner": { "name": "Priya Shah",     "initials": "PS" }, "backup": { "name": "Tom Becker",    "initials": "TB" } },
+  "transfers-service":    { "team": "Money Movement Team",        "owner": { "name": "Arjun Rao",      "initials": "AR" }, "backup": { "name": "Elena Rossi",   "initials": "ER" } },
+  "wire-gateway":         { "team": "Treasury Integrations Team", "owner": { "name": "Grace Okafor",   "initials": "GO" }, "backup": { "name": "Ben Carter",    "initials": "BC" } },
+  "fraud-service":        { "team": "Fraud and Risk Team",        "owner": { "name": "Noah Feldman",   "initials": "NF" }, "backup": { "name": "Aisha Khan",    "initials": "AK" } },
+  "ledger-service":       { "team": "Core Ledger Team",           "owner": { "name": "Ravi Menon",     "initials": "RM" }, "backup": { "name": "Julia Novak",   "initials": "JN" } },
+  "loans-service":        { "team": "Lending Team",               "owner": { "name": "Chloe Dubois",   "initials": "CD" }, "backup": { "name": "Omar Haddad",   "initials": "OH" } },
+  "notification-service": { "team": "Customer Comms Team",        "owner": { "name": "Ethan Brooks",   "initials": "EB" }, "backup": { "name": "Mei Tanaka",    "initials": "MT" } }
+}

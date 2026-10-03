@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { formatTime, shortService } from '../lib/format'
-import type { Level, LogLine } from '../types'
+import type { Level, LogLine, Severity } from '../types'
+import { SEVERITY_TAG } from './SeverityPill'
 
 const LEVEL_STYLE: Record<Level, { text: string; dot: string }> = {
   Error: { text: 'text-error', dot: 'bg-error' },
@@ -9,13 +10,26 @@ const LEVEL_STYLE: Record<Level, { text: string; dot: string }> = {
 }
 
 // Only Error rows are flagged. Warn rows get the amber dot and nothing else.
-export const LogRow = memo(function LogRow({ line, animate }: { line: LogLine; animate: boolean }) {
+interface Props {
+  line: LogLine
+  animate: boolean
+  severity: Severity | null // severity of this line's incident, if triaged
+  highlighted: boolean // the line belongs to the selected incident
+  onSelectIncident: (id: string) => void
+}
+
+export const LogRow = memo(function LogRow({ line, animate, severity, highlighted, onSelectIncident }: Props) {
   const flagged = line.level === 'Error'
   const lvl = LEVEL_STYLE[line.level]
+  const bg = highlighted
+    ? 'bg-primary-fixed/60 hover:bg-primary-fixed/80'
+    : flagged
+      ? 'bg-error-container/20 hover:bg-error-container/30'
+      : 'hover:bg-surface-container-low'
 
   return (
     <tr
-      className={`h-9 transition-colors ${flagged ? 'bg-error-container/20 hover:bg-error-container/30' : 'hover:bg-surface-container-low'} ${animate ? 'row-in' : ''}`}
+      className={`h-9 transition-colors ${bg} ${animate ? 'row-in' : ''}`}
     >
       <td className="pl-3.5 pr-2 font-mono text-[11px] text-outline whitespace-nowrap tabular-nums">
         {formatTime(line.ts)}
@@ -39,9 +53,12 @@ export const LogRow = memo(function LogRow({ line, animate }: { line: LogLine; a
       </td>
       <td className="pr-3.5 pl-2 text-right whitespace-nowrap">
         {flagged && line.incident_id && (
-          <span className="px-1.5 py-0.5 rounded bg-error-container text-tertiary font-mono text-[10px] font-medium">
+          <button
+            onClick={() => onSelectIncident(line.incident_id!)}
+            className={`px-1.5 py-0.5 rounded font-mono text-[10px] font-medium hover:ring-1 hover:ring-primary-container/40 ${SEVERITY_TAG[severity ?? 'Critical']}`}
+          >
             {line.incident_id}
-          </span>
+          </button>
         )}
       </td>
     </tr>

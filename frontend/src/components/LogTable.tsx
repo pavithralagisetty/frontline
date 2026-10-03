@@ -1,7 +1,15 @@
-import type { LogLine } from '../types'
+import type { LogLine, Severity } from '../types'
 import { LogRow } from './LogRow'
 
-export function LogTable({ lines, animateFromId }: { lines: LogLine[]; animateFromId: number }) {
+interface Props {
+  lines: LogLine[]
+  animateFromId: number
+  severityById: Record<string, Severity | null>
+  selectedIncident: string | null
+  onSelectIncident: (id: string) => void
+}
+
+export function LogTable({ lines, animateFromId, severityById, selectedIncident, onSelectIncident }: Props) {
   return (
     <div className="w-full bg-surface-container-lowest rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
       <div className="overflow-auto max-h-[calc(100vh-12.5rem)]">
@@ -25,7 +33,14 @@ export function LogTable({ lines, animateFromId }: { lines: LogLine[]; animateFr
           </thead>
           <tbody className="text-[12px] divide-y divide-surface-container-high">
             {lines.map((line) => (
-              <LogRow key={line.id} line={line} animate={line.id > animateFromId} />
+              <LogRow
+                key={line.id}
+                line={line}
+                animate={line.id > animateFromId}
+                severity={line.incident_id ? (severityById[line.incident_id] ?? null) : null}
+                highlighted={selectedIncident !== null && line.incident_id === selectedIncident}
+                onSelectIncident={onSelectIncident}
+              />
             ))}
           </tbody>
         </table>
